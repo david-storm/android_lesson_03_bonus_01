@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Infinity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="exit">Exit</string>
+    <string name="fragment_count">fragment count:</string>
+    <string name="prev">Prev</string>
+    <string name="reset">Reset</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="text_question">Are you sure you want to exit the application?</string>
+</resources>

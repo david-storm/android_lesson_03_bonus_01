@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/infinityFragment">
+
+    <fragment
+        android:id="@+id/infinityFragment"
+        android:name="com.onix.internship.infinity.infinity.InfinityFragment"
+        android:label="InfinityFragment"
+        tools:layout="@layout/fragment_infinity">
+        <action
+            android:id="@+id/action_infinityFragment_self"
+            app:destination="@id/infinityFragment" />
+        <argument
+            android:name="count"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_infinityFragment_reset"
+            app:destination="@id/infinityFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_infinityFragment_to_exitDialog"
+            app:destination="@id/exitDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/exitDialog"
+        android:name="com.onix.internship.infinity.exit.ExitDialog"
+        android:label="ExitDialog"
+        tools:layout="@layout/dialog_exit"/>
+</navigation>
