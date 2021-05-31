@@ -1,9 +1,11 @@
 package com.onix.internship.infinity.infinity
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
@@ -34,16 +36,28 @@ class InfinityFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         viewModel.navigation.observe(viewLifecycleOwner, ::navigate)
-        viewModel.backNavigation.observe(viewLifecycleOwner, ::navigateBack)
+    }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                navigate(InfinityFragmentDirections.actionInfinityFragmentToExitDialog())
+            }
+        }
+        if (viewModel.countCurrentFragment.value == 0) {
+            requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+        }
     }
 
 
     private fun navigate(direction: NavDirections) {
-        findNavController().navigate(direction)
-    }
 
-    private fun navigateBack(boolean: Boolean) {
-        findNavController().popBackStack()
+        if(direction.arguments.get("onBack") == true){
+            requireActivity().onBackPressed()
+            return
+        }
+        findNavController().navigate(direction)
     }
 }

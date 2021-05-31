@@ -3,16 +3,16 @@ package com.onix.internship.infinity.infinity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavArgument
+import androidx.navigation.NavController
 import androidx.navigation.NavDirections
+import androidx.navigation.PopUpToBuilder
 import com.onix.internship.infinity.SingleLiveEvent
 
 class InfinityViewModel(countFragment: Int) : ViewModel() {
 
     private val _navigation = SingleLiveEvent<NavDirections>()
     val navigation: LiveData<NavDirections> = _navigation
-
-    private val _backNavigation = SingleLiveEvent<Boolean>()
-    val backNavigation: LiveData<Boolean> = _backNavigation
 
     private val _countCurrentFragment = MutableLiveData(countFragment)
     val countCurrentFragment: LiveData<Int> = _countCurrentFragment
@@ -29,7 +29,7 @@ class InfinityViewModel(countFragment: Int) : ViewModel() {
 
     fun prevFragment(){
         if(getCount() > 0){
-            _backNavigation.value = true
+            _navigation.value = InfinityFragmentDirections.actionInfinityFragmentSelf(getCount(), true)
             return
         }
         _navigation.value = InfinityFragmentDirections.actionInfinityFragmentToExitDialog()

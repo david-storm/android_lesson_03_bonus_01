@@ -25,6 +25,10 @@
         <action
             android:id="@+id/action_infinityFragment_to_exitDialog"
             app:destination="@id/exitDialog" />
+        <argument
+            android:name="onBack"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <dialog
         android:id="@+id/exitDialog"
