@@ -28,10 +28,6 @@ class InfinityViewModel(countFragment: Int) : ViewModel() {
     }
 
     fun prevFragment(){
-        if(getCount() > 0){
-            _navigation.value = InfinityFragmentDirections.actionInfinityFragmentSelf(getCount(), true)
-            return
-        }
-        _navigation.value = InfinityFragmentDirections.actionInfinityFragmentToExitDialog()
+        _navigation.value = InfinityFragmentDirections.actionInfinityFragmentPop()
     }
 }

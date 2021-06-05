@@ -18,8 +18,9 @@ class InfinityFragment : Fragment() {
 
     private lateinit var binding: FragmentInfinityBinding
 
-    private val args: InfinityFragmentArgs by navArgs()
-    private val viewModel: InfinityViewModel by viewModels { InfinityViewModelFactory(args.count) }
+    private val args: Bundle? = arguments
+    private val count :Int = (args?.get("count") ?: 0 ) as Int
+    private val viewModel: InfinityViewModel by viewModels { InfinityViewModelFactory(count) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +55,7 @@ class InfinityFragment : Fragment() {
 
     private fun navigate(direction: NavDirections) {
 
-        if(direction.arguments.get("onBack") == true){
+        if(direction == InfinityFragmentDirections.actionInfinityFragmentPop()){
             requireActivity().onBackPressed()
             return
         }

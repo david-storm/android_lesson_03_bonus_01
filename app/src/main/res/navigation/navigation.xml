@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/infinityFragment">
+    app:startDestination="@id/pagerFragment">
 
     <fragment
         android:id="@+id/infinityFragment"
@@ -25,14 +25,18 @@
         <action
             android:id="@+id/action_infinityFragment_to_exitDialog"
             app:destination="@id/exitDialog" />
-        <argument
-            android:name="onBack"
-            app:argType="boolean"
-            android:defaultValue="false" />
+        <action
+            android:id="@+id/action_infinityFragment_pop"
+            app:popUpTo="@id/infinityFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <dialog
         android:id="@+id/exitDialog"
         android:name="com.onix.internship.infinity.exit.ExitDialog"
         android:label="ExitDialog"
         tools:layout="@layout/dialog_exit"/>
+    <fragment
+        android:id="@+id/pagerFragment"
+        android:name="com.onix.internship.infinity.pager.PagerFragment"
+        android:label="PagerFragment" />
 </navigation>
